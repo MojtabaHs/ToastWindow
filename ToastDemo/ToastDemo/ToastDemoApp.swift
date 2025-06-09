@@ -6,18 +6,20 @@
 //
 
 import SwiftUI
+import ToastWindow
+
 
 @main
 struct ToastDemoApp: App {
     
     @State var showSheet = false
-//    @ObservedObject var toastManager = ToastManager.shared
+    @Environment(\.toastManager) var toastManager
     
-    var showToastButton: some View {
+    var showSwiftUIToastButton: some View {
         Button(action: {
-//            toastManager.showToast(message: "Animated Toast Message")
+            toastManager.showToast(content: MyToastView(message: "Hello World!"))
         }, label: {
-            Text("Show Animated Toast")
+            Text("Show SwiftUI Toast")
         })
         .buttonStyle(.bordered)
     }
@@ -33,10 +35,8 @@ struct ToastDemoApp: App {
     
     var content: some View {
         VStack(spacing: 48) {
-            
             toggleSheetButton
-            
-            showToastButton
+            showSwiftUIToastButton
         }
     }
     

@@ -7,16 +7,17 @@
 
 import UIKit
 
+/// This class handles allowing passing user interaction events through to the desired UIWindow
 final class PassThroughWindow: UIWindow {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let hitView = super.hitTest(point, with: event)
-        
         // Check if toast was tapped
         if let hitView,
-           hitView.isKind(of: UIToastView.self)  {
+           hitView.window == self {
+            // Toast was tapped
             return hitView
         } else {
-            // Pass hit through to main window
+            // Pass hit through to main/key window
             return nil
         }
     }

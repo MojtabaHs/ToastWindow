@@ -5,13 +5,16 @@
 //  Created by Michael Ellis on 6/9/25.
 //
 
+import SwiftUI
 import UIKit
 
-@MainActor
-final class ToastManager {
+/// This class handles setting up a secondary UIWindow and displaying Toast UIViews in the secondary window on top of the Key Window that app content is in
+@MainActor final public class ToastManager {
     
-    private var toastWindow: UIWindow?
+    /// The secondary UIWindow that toasts are displayed
+    private var toastWindow: PassThroughWindow?
     
+    /// Returns the app's Key Window
     private var activeWindow: UIWindow? {
         UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
@@ -19,43 +22,35 @@ final class ToastManager {
             .first { $0.isKeyWindow }
     }
     
-    private func setupToastWindow(in scene: UIWindowScene) {
+    public func showToast<V: View>(content: V,
+                                   duration: TimeInterval = 2.0,
+                                   animationDuration: TimeInterval = 0.3) {
+        guard let window = activeWindow,
+              let scene = window.windowScene else {
+            assertionFailure("Failed to retrieve active window")
+            return
+        }
+        
+        // Setup toast window if necessary, else do nothing
         if toastWindow == nil {
             let toastWindow = PassThroughWindow(windowScene: scene)
             toastWindow.windowLevel = .alert + 1
             toastWindow.backgroundColor = UIColor.clear
             self.toastWindow = toastWindow
         }
-    }
-    
-    private func setupToastView(in window: UIWindow, with message: String) {
-        
-        let uiView = UIToastView(message: message,
-                                  parentWindow: window)
-        window.addSubview(uiView)
-        window.windowLevel = .alert + 1
-        window.isHidden = false
-        window.bringSubviewToFront(uiView)
-        window.isUserInteractionEnabled = true
-    }
-    
-    func showToast(message: String,
-                   duration: TimeInterval = 2.0) {
-        
-        guard let window = activeWindow,
-           let scene = window.windowScene else {
-            assertionFailure("Failed to retrieve active window")
-            return
-        }
-        
-        setupToastWindow(in: scene)
         
         guard let toastWindow else {
             assertionFailure("Failed to setup toast window")
             return
         }
         
-        setupToastView(in: toastWindow, with: message)
-        
+        let toastUIView = SwiftUIToastView(content: content,
+                                           duration: duration,
+                                           animationDuration: animationDuration,
+                                           parentWindow: toastWindow)
+        toastWindow.isHidden = false
+        toastWindow.isUserInteractionEnabled = true
+        toastWindow.addSubview(toastUIView)
+        toastWindow.bringSubviewToFront(toastUIView)
     }
 }

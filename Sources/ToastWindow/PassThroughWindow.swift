@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// This class handles allowing passing user interaction events through to the desired UIWindow
+/// This class handles allowing passing user interaction events through to the desired UIWindow.
 final class PassThroughWindow: UIWindow {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let hitView = super.hitTest(point, with: event)

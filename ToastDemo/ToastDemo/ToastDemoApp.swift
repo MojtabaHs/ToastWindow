@@ -14,10 +14,24 @@ struct ToastDemoApp: App {
     
     @State var showSheet = false
     @Environment(\.toastManager) var toastManager
+    @State var toastPosition: ToastPosition = .bottom
+    
+    var toastPositionPicker: some View {
+        Picker("Toast Position", selection: $toastPosition) {
+            Text("Top").tag(ToastPosition.top)
+            Text("Middle").tag(ToastPosition.middle)
+            Text("Bottom").tag(ToastPosition.bottom)
+        }
+        .pickerStyle(.segmented)
+    }
     
     var showSwiftUIToastButton: some View {
         Button(action: {
-            toastManager.showToast(content: MyToastView(message: "Hello World!"))
+            let toastView = MyToastView(message: "Hello World!",
+                                        position: toastPosition)
+            toastManager.showToast(content: toastView,
+                                   duration: 2.6,
+                                   position: toastPosition)
         }, label: {
             Text("Show SwiftUI Toast")
         })
@@ -35,6 +49,7 @@ struct ToastDemoApp: App {
     
     var content: some View {
         VStack(spacing: 48) {
+            toastPositionPicker
             toggleSheetButton
             showSwiftUIToastButton
         }

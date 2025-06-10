@@ -1,0 +1,89 @@
+//
+//  TestingView.swift
+//  ToastDemo
+//
+//  Created by Michael Ellis on 6/9/25.
+//
+
+import SwiftUI
+import ToastWindow
+
+struct TestingView: View {
+    
+    @State var showSheet = false
+    @State var textTest = ""
+    @Environment(\.toastManager) var toastManager
+    @State var toastPosition: ToastPosition = .bottom
+    @State private var offsetMultiplier: CGFloat = 0.0
+    
+    
+    var offsetMultiplierControl: some View {
+        VStack {
+            Text("Offset Multiplier: \(offsetMultiplier, specifier: "%.1f")")
+                .font(.headline)
+            if #available(iOS 17.0, *) {
+                Slider(value: $offsetMultiplier, in: -200...200, step: 10)
+                    .padding()
+                    .onChange(of: offsetMultiplier) {
+                        toastManager.configure(multiToastOffset: offsetMultiplier)
+                    }
+            } else {
+                Slider(value: $offsetMultiplier, in: -200...200, step: 10)
+                    .padding()
+                    .onChange(of: offsetMultiplier) { _ in
+                        toastManager.configure(multiToastOffset: offsetMultiplier)
+                    }
+            }
+        }
+    }
+    
+    var toastPositionPicker: some View {
+        Picker("Toast Position", selection: $toastPosition) {
+            Text("Top").tag(ToastPosition.top)
+            Text("Middle").tag(ToastPosition.middle)
+            Text("Bottom").tag(ToastPosition.bottom)
+        }
+        .pickerStyle(.segmented)
+    }
+    
+    var showSwiftUIToastButton: some View {
+        Button(action: {
+            let toastView = MyToastView(message: "Hello World!",
+                                        position: toastPosition)
+            toastManager.showToast(content: toastView,
+                                   duration: 2.6,
+                                   position: toastPosition)
+        }, label: {
+            Text("Show SwiftUI Toast")
+        })
+        .buttonStyle(.bordered)
+    }
+    
+    var toggleSheetButton: some View {
+        Button(action: {
+            showSheet.toggle()
+        }, label: {
+            Text("Toggle Sheet Display")
+        })
+        .buttonStyle(.bordered)
+    }
+    
+    var content: some View {
+        VStack(spacing: 48) {
+            offsetMultiplierControl
+            toastPositionPicker
+            TextField("Demo Textfield", text: $textTest)
+                .textFieldStyle(.roundedBorder)
+            toggleSheetButton
+            showSwiftUIToastButton
+        }
+    }
+    
+    var body: some View {
+        content
+            .padding()
+            .sheet(isPresented: $showSheet, content: {
+                content
+            })
+    }
+}

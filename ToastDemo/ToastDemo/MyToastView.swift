@@ -12,10 +12,11 @@ struct MyToastView: View {
     let toaster = ToastManager()
     @State var message: String
     let position: ToastPosition
+    let bgColor: Color
     /// Total duration that the toast will be visible on screen
-    let duration: TimeInterval = 2.0
+    let duration: TimeInterval
     /// Duration of the movement in and out
-    let animationDuration: TimeInterval = 0.3
+    let animationDuration: TimeInterval
     /// Opacity control
     @State private var isVisible = false
     /// Start position
@@ -23,9 +24,15 @@ struct MyToastView: View {
     @State private var offsetY: CGFloat
     
     init(message: String,
-         position: ToastPosition = .bottom) {
+         position: ToastPosition = .bottom,
+         duration: TimeInterval = 2.6,
+         animationDuration: TimeInterval = 0.3,
+         bgColor: Color = .gray) {
         self.message = message
         self.position = position
+        self.duration = duration
+        self.animationDuration = animationDuration
+        self.bgColor = bgColor
         switch position {
         case .bottom:
             self.initialOffsetY = 50
@@ -44,8 +51,7 @@ struct MyToastView: View {
             Spacer()
             Text(message)
                 .padding()
-                .frame(width: 150, height: 50)
-                .background(Color.red.opacity(0.8))
+                .background(bgColor)
                 .foregroundColor(.white)
                 .cornerRadius(8)
                 .opacity(isVisible ? 1 : 0)
@@ -62,7 +68,7 @@ struct MyToastView: View {
                         offsetY = 0
                         isVisible = true
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + (duration + animationDuration)) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + (duration - animationDuration)) {
                         withAnimation(.easeInOut(duration: animationDuration)) {
                             offsetY = initialOffsetY
                             isVisible = false

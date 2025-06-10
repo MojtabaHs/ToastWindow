@@ -8,60 +8,52 @@
 import SwiftUI
 import ToastWindow
 
-
 @main
 struct ToastDemoApp: App {
     
-    @State var showSheet = false
-    @Environment(\.toastManager) var toastManager
-    @State var toastPosition: ToastPosition = .bottom
-    
-    var toastPositionPicker: some View {
-        Picker("Toast Position", selection: $toastPosition) {
-            Text("Top").tag(ToastPosition.top)
-            Text("Middle").tag(ToastPosition.middle)
-            Text("Bottom").tag(ToastPosition.bottom)
-        }
-        .pickerStyle(.segmented)
+    enum NavLocation {
+        case testing
+        case checkout
+        case signup
+        case chat
     }
     
-    var showSwiftUIToastButton: some View {
-        Button(action: {
-            let toastView = MyToastView(message: "Hello World!",
-                                        position: toastPosition)
-            toastManager.showToast(content: toastView,
-                                   duration: 2.6,
-                                   position: toastPosition)
-        }, label: {
-            Text("Show SwiftUI Toast")
-        })
-        .buttonStyle(.bordered)
-    }
-    
-    var toggleSheetButton: some View {
-        Button(action: {
-            showSheet.toggle()
-        }, label: {
-            Text("Toggle Sheet Display")
-        })
-        .buttonStyle(.bordered)
-    }
-    
-    var content: some View {
-        VStack(spacing: 48) {
-            toastPositionPicker
-            toggleSheetButton
-            showSwiftUIToastButton
-        }
-    }
+    @State var navPath = NavigationPath()
     
     var body: some Scene {
         WindowGroup {
-            content
-                .padding()
-                .sheet(isPresented: $showSheet, content: {
-                    content
+            NavigationStack(path: $navPath) {
+                VStack(spacing: 24) {
+                    Button("Testing View") {
+                        navPath.append(NavLocation.testing)
+                    }
+                    .buttonStyle(.bordered)
+                    Button("Checkout Demo") {
+                        navPath.append(NavLocation.checkout)
+                    }
+                    .buttonStyle(.bordered)
+                    Button("Signup Demo") {
+                        navPath.append(NavLocation.signup)
+                    }
+                    .buttonStyle(.bordered)
+                    Button("Chat Demo") {
+                        navPath.append(NavLocation.chat)
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .navigationDestination(for: NavLocation.self, destination: { navLocation in
+                    switch navLocation {
+                    case .testing:
+                        TestingView()
+                    case .checkout:
+                        CheckoutView()
+                    case .signup:
+                        SignupView()
+                    case .chat:
+                        ChatView()
+                    }
                 })
+            }
         }
     }
 }

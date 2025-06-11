@@ -8,6 +8,8 @@
 import SwiftUI
 import UIKit
 
+public typealias ToastID = UUID
+
 public typealias DismissClosure = () -> Void
 
 public final class ToastManager: Sendable {
@@ -21,14 +23,14 @@ public final class ToastManager: Sendable {
         
         WindowManager.createToastWindow(content: content,
                                         duration: duration,
-                                        id: UUID(),
+                                        id: ToastID(),
                                         isUserInteractionEnabled: isUserInteractionEnabled,
                                         onDismiss: onDismiss)
     }
     
     @MainActor public func showToast<V: View>(content: V,
                                               duration: TimeInterval?,
-                                              id: UUID = UUID(),
+                                              id: ToastID = ToastID(),
                                               isUserInteractionEnabled: Bool = true,
                                               onDismiss: (() -> Void)? = nil) -> UUID {
         
@@ -41,7 +43,7 @@ public final class ToastManager: Sendable {
     }
     
     @MainActor public func showToast<V: View>(content: V,
-                                              id: UUID = UUID(),
+                                              id: ToastID = ToastID(),
                                               isUserInteractionEnabled: Bool = true,
                                               onDismiss: DismissClosure? = nil) {
         
@@ -53,7 +55,7 @@ public final class ToastManager: Sendable {
     }
     
     @MainActor public func showToast<V: View>(content: V,
-                                              id: UUID = UUID(),
+                                              id: ToastID = ToastID(),
                                               isUserInteractionEnabled: Bool = true) -> DismissClosure {
         
         WindowManager.createToastWindow(content: content,

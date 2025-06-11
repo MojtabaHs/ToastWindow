@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public typealias DismissToastClosure = (@Sendable (UUID) -> Void)
+public typealias DismissToastClosure = (@Sendable (ToastID) -> Void)
 public typealias DismissAllToastsClosure = (@Sendable () -> Void)
 
 public extension EnvironmentValues {

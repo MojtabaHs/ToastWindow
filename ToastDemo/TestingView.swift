@@ -53,7 +53,7 @@ struct TestingView: View {
     
     var showCenterSpinner: some View {
         Button(action: {
-            let hudId = UUID()
+            let hudId = ToastID()
             let toastView = DemoHUDView()
                 .onTapGesture {
                     dismissToast(hudId)
@@ -86,9 +86,15 @@ struct TestingView: View {
             TextField("Demo Textfield", text: $textTest)
                 .textFieldStyle(.roundedBorder)
                 .focused($textFieldFocused)
-                .onChange(of: textFieldFocused, perform: { _ in
-                    let toastView = MyToastView(message: "TextField Focused", bgColor: .red)
-                    toastManager.showToast(content: toastView,
+                .onChange(of: textTest, perform: { _ in
+                    toastManager.showToast(content: VStack {
+                        Text(textTest)
+                            .padding()
+                            .background(.gray)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                        Spacer()
+                    },
                                            duration: 2.6)
                 })
         }

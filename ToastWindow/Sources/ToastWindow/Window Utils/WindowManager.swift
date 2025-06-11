@@ -8,35 +8,33 @@
 import UIKit
 import SwiftUI
 
-struct ToastWindow {
-    let window: UIWindow
-    let onDismiss: (() -> ())?
-}
-
 @MainActor enum WindowManager {
-        
-    private static var toastWindows: [UUID: ToastWindow] = [:]
+    
+    private static var toastWindows: [ToastID: ToastWindow] = [:]
         
     static func createToastWindow<V: View>(content: V,
                                            duration: TimeInterval?,
-                                           id: UUID = UUID(),
+                                           id: ToastID,
                                            isUserInteractionEnabled: Bool,
                                            onDismiss: (() -> ())?) {
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             assertionFailure("ToastWindow Error: Active UIWindowScene not found")
             return
         }
-        
+        let keyWindow = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
         let window = PassThroughWindow(windowScene: scene)
                 
+        
         let controller = UIHostingController(rootView: content)
         controller.view.backgroundColor = .clear
-        
+
         window.isUserInteractionEnabled = isUserInteractionEnabled
         window.backgroundColor = .clear
         window.rootViewController = controller
         window.windowLevel = .alert + 1
-        window.makeKeyAndVisible()
+        window.isHidden = false
+
+//        keyWindow?.makeKey()
         
         toastWindows[id] = ToastWindow(window: window,
                                        onDismiss: onDismiss)
@@ -48,7 +46,7 @@ struct ToastWindow {
         }
     }
     
-    static func dismissToastWindow(id: UUID) {
+    static func dismissToastWindow(id: ToastID) {
         guard let toast = toastWindows[id] else {
             return
         }

@@ -9,9 +9,6 @@ import SwiftUI
 import ToastWindow
 
 struct MyToastView: View {
-    
-    let toaster = ToastManager()
-    
     @State var message: String
     let bgColor: Color
     /// Total duration that the toast will be visible on screen

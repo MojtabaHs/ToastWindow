@@ -1,5 +1,5 @@
 //
-//  ToastManagerEnvironmentValue.swift
+//  ToastManagerKey.swift
 //  ToastWindow
 //
 //  Created by Michael Ellis on 6/9/25.
@@ -24,9 +24,9 @@ import SwiftUI
 ///     }
 /// }
 /// ```
-public struct ToastManagerKey: EnvironmentKey {
+struct ToastManagerKey: EnvironmentKey {
     /// The default instance of `ToastManager` used when no explicit value is set.
-    public static let defaultValue = ToastManager()
+    static let defaultValue = ToastManager()
 }
 
 public extension EnvironmentValues {

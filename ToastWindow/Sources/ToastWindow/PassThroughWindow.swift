@@ -8,18 +8,22 @@
 import UIKit
 import SwiftUI
 
-class PassThroughWindow: UIWindow {
+final class PassThroughWindow: UIWindow {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        
         guard isUserInteractionEnabled,
               let vc = self.rootViewController else {
             return nil
         }
+        
         vc.view.layoutIfNeeded()
-        guard vc.view.subviews.contains(where: { subview in
+        
+        guard let _ = vc.view.subviews.first(where: { subview in
             subview.isUserInteractionEnabled && subview.frame.contains(point)
         }) else {
             return nil
         }
+        
         return vc.view
     }
 }

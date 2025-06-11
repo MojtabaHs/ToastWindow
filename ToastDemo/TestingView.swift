@@ -17,7 +17,8 @@ struct TestingView: View {
     var showSwiftUIToastButton: some View {
         Button(action: {
             let toastView = MyToastView(message: "Hello World!")
-            toastManager.showToast(content: toastView)
+            toastManager.showToast(content: toastView,
+                                   duration: 2.6)
         }, label: {
             Text("Show SwiftUI Toast")
         })

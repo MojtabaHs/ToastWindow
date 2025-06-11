@@ -8,24 +8,27 @@
 import UIKit
 import SwiftUI
 
-@MainActor final class WindowManager {
-    
-    static let shared = WindowManager()
-    
-    private var windows: [UUID: UIWindow] = [:]
-    
-    init() { }
-    
+struct ToastWindow {
+    let window: UIWindow
+    let onDismiss: (() -> ())?
+}
+
+@MainActor enum WindowManager {
+        
+    private static var toastWindows: [UUID: ToastWindow] = [:]
+        
     static func createToastWindow<V: View>(content: V,
+                                           duration: TimeInterval?,
                                            id: UUID = UUID(),
-                                           isUserInteractionEnabled: Bool = true) {
+                                           isUserInteractionEnabled: Bool = true,
+                                           onDismiss: (() -> ())? = nil) {
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             assertionFailure("ToastWindow Error: Active UIWindowScene not found")
             return
         }
         
         let window = PassThroughWindow(windowScene: scene)
-        
+                
         let controller = UIHostingController(rootView: content)
         controller.view.backgroundColor = .clear
         
@@ -35,11 +38,26 @@ import SwiftUI
         window.windowLevel = .alert + 1
         window.makeKeyAndVisible()
         
-        shared.windows[id] = window
+        toastWindows[id] = ToastWindow(window: window,
+                                  onDismiss: onDismiss)
+        
+        if let duration {
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                dismissToastWindow(id: id)
+            }
+        }
     }
     
-    static func dismissToast(id: UUID) {
-        shared.windows[id]?.isHidden = true
-        shared.windows.removeValue(forKey: id)
+    static func dismissToastWindow(id: UUID) {
+        
+        guard let toast = toastWindows[id] else {
+            return
+        }
+        
+        toast.window.isHidden = true
+        toast.window.removeFromSuperview()
+        toast.window.rootViewController = nil
+        toastWindows.removeValue(forKey: id)
+
     }
 }

@@ -20,8 +20,8 @@ struct ToastWindow {
     static func createToastWindow<V: View>(content: V,
                                            duration: TimeInterval?,
                                            id: UUID = UUID(),
-                                           isUserInteractionEnabled: Bool = true,
-                                           onDismiss: (() -> ())? = nil) {
+                                           isUserInteractionEnabled: Bool,
+                                           onDismiss: (() -> ())?) {
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             assertionFailure("ToastWindow Error: Active UIWindowScene not found")
             return
@@ -39,7 +39,7 @@ struct ToastWindow {
         window.makeKeyAndVisible()
         
         toastWindows[id] = ToastWindow(window: window,
-                                  onDismiss: onDismiss)
+                                       onDismiss: onDismiss)
         
         if let duration {
             DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
@@ -54,6 +54,7 @@ struct ToastWindow {
             return
         }
         
+        toast.onDismiss?()
         toast.window.isHidden = true
         toast.window.removeFromSuperview()
         toast.window.rootViewController = nil

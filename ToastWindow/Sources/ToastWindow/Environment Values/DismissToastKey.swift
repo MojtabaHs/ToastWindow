@@ -7,15 +7,12 @@
 
 import SwiftUI
 
-public typealias DismissToastClosure = (@Sendable (UUID) -> Void)?
-
-struct DismissToastKey: EnvironmentKey {
-    static let defaultValue: DismissToastClosure = nil
-}
+public typealias DismissToastClosure = (@Sendable (UUID) -> Void)
 
 public extension EnvironmentValues {
-    var dismissToast: DismissToastClosure {
-        get { self[DismissToastKey.self] }
-        set { self[DismissToastKey.self] = newValue }
+    @Entry var dismissToast: DismissToastClosure = { id in
+        Task { @MainActor in
+            WindowManager.dismissToastWindow(id: id)
+        }
     }
 }

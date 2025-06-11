@@ -14,22 +14,25 @@ public final class ToastManager: Sendable {
     
     public init() { }
     
-    @discardableResult
+    @MainActor public func showToast<V: View>(content: V,
+                                              duration: TimeInterval,
+                                              isUserInteractionEnabled: Bool = true,
+                                              onDismiss: (() -> Void)? = nil) {
+        
+        WindowManager.createToastWindow(content: content,
+                                        duration: duration,
+                                        id: UUID(),
+                                        isUserInteractionEnabled: isUserInteractionEnabled,
+                                        onDismiss: onDismiss)
+    }
+    
     @MainActor public func showToast<V: View>(content: V,
                                               duration: TimeInterval?,
                                               id: UUID = UUID(),
                                               isUserInteractionEnabled: Bool = true,
                                               onDismiss: (() -> Void)? = nil) -> UUID {
         
-        // Enable dismissing the Toast Window via environment key function call
-        let dismissableContent = content
-            .environment(\.dismissToast, { id in
-                Task { @MainActor in
-                    WindowManager.dismissToastWindow(id: id)
-                }
-            })
-        
-        WindowManager.createToastWindow(content: dismissableContent,
+        WindowManager.createToastWindow(content: content,
                                         duration: duration,
                                         id: id,
                                         isUserInteractionEnabled: isUserInteractionEnabled,
@@ -37,16 +40,27 @@ public final class ToastManager: Sendable {
         return id
     }
     
-    @discardableResult
     @MainActor public func showToast<V: View>(content: V,
                                               id: UUID = UUID(),
                                               isUserInteractionEnabled: Bool = true,
-                                              onDismiss: DismissClosure? = nil) -> DismissClosure {
+                                              onDismiss: DismissClosure? = nil) {
         
         WindowManager.createToastWindow(content: content,
                                         duration: nil,
                                         id: id,
-                                        isUserInteractionEnabled: isUserInteractionEnabled)
+                                        isUserInteractionEnabled: isUserInteractionEnabled,
+                                        onDismiss: onDismiss)
+    }
+    
+    @MainActor public func showToast<V: View>(content: V,
+                                              id: UUID = UUID(),
+                                              isUserInteractionEnabled: Bool = true) -> DismissClosure {
+        
+        WindowManager.createToastWindow(content: content,
+                                        duration: nil,
+                                        id: id,
+                                        isUserInteractionEnabled: isUserInteractionEnabled,
+                                        onDismiss: nil)
         
         // Pass back the dismiss action
         let dismissAction: () -> Void = {

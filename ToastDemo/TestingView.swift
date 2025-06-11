@@ -8,12 +8,28 @@
 import SwiftUI
 import ToastWindow
 
+struct DemoHUDView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            ProgressView()
+                .progressViewStyle(.circular)
+                .frame(width: 180, height: 180)
+                .background(Color(.systemGray4))
+                .foregroundColor(.white)
+                .cornerRadius(8)
+            Spacer()
+        }
+    }
+}
+
 struct TestingView: View {
     
     @State var showSheet = false
     @State var textTest = ""
     @FocusState var textFieldFocused: Bool
     @Environment(\.toastManager) var toastManager
+    @Environment(\.dismissToast) var dismissToast
     
     var showSwiftUIToastButton: some View {
         Button(action: {
@@ -22,6 +38,21 @@ struct TestingView: View {
                                    duration: 2.6)
         }, label: {
             Text("Show SwiftUI Toast")
+        })
+        .buttonStyle(.bordered)
+    }
+    
+    var showCenterSpinner: some View {
+        Button(action: {
+            let hudId = UUID()
+            let toastView = DemoHUDView()
+                .onTapGesture {
+                    dismissToast(hudId)
+                }
+            let toastId = toastManager.showToast(content: toastView,
+                                   id: hudId)
+        }, label: {
+            Text("Show Spinner Toast")
         })
         .buttonStyle(.bordered)
     }
@@ -56,6 +87,7 @@ struct TestingView: View {
     
     var content: some View {
         VStack(spacing: 48) {
+            showCenterSpinner
             testTextField
             toggleSheetButton
             showSwiftUIToastButton

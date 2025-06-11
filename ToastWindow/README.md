@@ -5,7 +5,23 @@
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange.svg)](https://swift.org)
 
 A lightweight SwiftUI package for displaying toast notifications in iOS applications. ToastWindow creates a secondary window to display toast notifications, ensuring they appear above all other content while maintaining a clean and modern look using any SwiftUI view you pass in.
-    
+
+
+## Features
+
+- 🪽 **SwiftUI Toast Views**
+- 🖌️ Fully customizable using **SwiftUI Modifiers**
+    - 🖼️ **Icons & Images** – Enables adding symbols or images in the toast message
+    - 🎨 **Themes & Styling** – Allows color, typography, shadow, and rounded corner customization
+    - 🎭 **Customizable Animations** – Build animations using SwiftUI Modifiers
+    - ✋ **Gesture Handling** – Enable **touch and swipe** gestures, such as dismissing by tap or swipe
+    - 📌 **Positioning Control** - Use SwiftUI to position your content
+    - 👩🏻‍💻 **Keyboard Avoidance** - Avoids safe areas unless disabled
+    - 🔄 **Device Rotation** - Position will update when the device rotates
+- 🔝 **Displays on top of everything** including sheets from the `.sheet` SwiftUI modifier
+- 🔄 **Built-in Window management** - Prevent memory leaks
+- 🔒 **Thread Safety** - Ensures UI updates occur on the main thread
+- ⏱️ **Customizable Duration** - Be sure to include animation duration in duration passed to `.showToast()`
 ------
 
 ## Installation
@@ -39,85 +55,16 @@ https://github.com/michael94ellis/ToastWindow.git
 import SwiftUI
 import ToastWindow
 
-struct ContentView: View {
+// TODO
 
-    @Environment(\.toastManager) var toastManager
-    
-    var body: some View {
-        Button("Show Toast") {
-            toastManager.showToast(
-                content: Text("Hello, World!")
-            )
-        }
-    }
-}
 ```
 
 ### Custom Toast Content
 
 ```swift
 
-struct MyToastView: View {
-    let message: String
-    let duration: TimeInterval = 2.0
-    @State private var isVisible = false
-    @State private var offset: CGFloat = 50.0
+// TODO
 
-    var body: some View {
-        Text(message)
-            .padding()
-            .background(Color.red.opacity(0.8))
-            .foregroundColor(.white)
-            .cornerRadius(8)
-            .offset(y: offsetY)
-            .opacity(isVisible ? 1 : 0)
-            .onAppear {
-                withAnimation(.easeInOut(duration: 0.3)) {
-                    isVisible = true 
-                    offset = 0
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                    withAnimation(.easeInOut(duration: 0.3)) { 
-                        offset = 50
-                        isVisible = false 
-                    }
-                }
-            }
-    }
-}
-
-// Programmatically invoke toast presentation
-toastManager.showToast(
-    content: MyToastView(message: "Form Submitted!")
-)
-```
-
-### Multiple Toasts
-
-```swift
-// Show multiple toasts
-toastManager.showToast(
-    content: 
-        VStack {
-            Spacer() 
-            Text("Top toast")
-        }
-)
-toastManager.showToast(
-    content: 
-        VStack {
-            Spacer() 
-            Text("Middle toast")
-            Spacer()
-        }
-)
-toastManager.showToast(
-    content: 
-        VStack {
-            Spacer() 
-            Text("Bottom toast")
-        }
-)
 ```
 
 ------
@@ -125,12 +72,8 @@ toastManager.showToast(
 ## Requirements
 
 - iOS 13.0+
+- macOS 11.0+
 - Swift 6.0+
-- Xcode 14.0+
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
 ## Contributing
 
@@ -147,24 +90,6 @@ Michael Ellis
     - https://stackoverflow.com/questions/14740921/passing-touches-between-stacked-uiwindows
     - https://www.fivestars.blog/articles/swiftui-windows/
 
-# Features
+## License
 
-## UI
-
-- SwiftUI Compatibility
-    - Positioning Control: Support placements like top, bottom, center, or custom offsets
-    - Icons & Images: Enables adding symbols or images alongside the toast message
-    - Themes & Styling: Allows color, typography, shadow, and rounded corner customization
-    - Custom Animations: Support fade-in, slide, bounce, or other effects for appearing/disappearing
-    - Gesture Handling: Enable touch and swipe gestures, such as dismissing by tap or swipe
-- Customizable Duration: For both animation and total display duration
-- Thread Safety: Ensures UI updates occur on the main thread
-- Memory Management: Avoid retaining UIWindows indefinitely to prevent memory leaks
-
----
-
-### TODO: 
-- Implement keyboard avoidance
-- Configure movement for toasts 
-    - Enable placement change (e.g. multiple toasts move down when first pops FIFO)
-    
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.

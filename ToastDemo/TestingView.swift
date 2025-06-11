@@ -12,6 +12,7 @@ struct TestingView: View {
     
     @State var showSheet = false
     @State var textTest = ""
+    @FocusState var textFieldFocused: Bool
     @Environment(\.toastManager) var toastManager
     
     var showSwiftUIToastButton: some View {
@@ -34,10 +35,28 @@ struct TestingView: View {
         .buttonStyle(.bordered)
     }
     
-    var content: some View {
-        VStack(spacing: 48) {
+    var testTextField: some View {
+        VStack {
+            Button(action: {
+                textFieldFocused.toggle()
+            }, label: {
+                Text("Toggle TextField Focus")
+            })
+            .buttonStyle(.bordered)
             TextField("Demo Textfield", text: $textTest)
                 .textFieldStyle(.roundedBorder)
+                .focused($textFieldFocused)
+                .onChange(of: textFieldFocused, perform: { _ in
+                    let toastView = MyToastView(message: "TextField Focused", bgColor: .red)
+                    toastManager.showToast(content: toastView,
+                                           duration: 2.6)
+                })
+        }
+    }
+    
+    var content: some View {
+        VStack(spacing: 48) {
+            testTextField
             toggleSheetButton
             showSwiftUIToastButton
         }

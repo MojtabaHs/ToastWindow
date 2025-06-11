@@ -20,9 +20,7 @@ import SwiftUI
 ///     @Environment(\.toastManager) private var toastManager
 ///     
 ///     var body: some View {
-///         Button("Show Toast") {
-///             toastManager.showToast(content: Text("Hello!"), duration: 2.0)
-///         }
+///            ...
 ///     }
 /// }
 /// ```
@@ -36,7 +34,7 @@ public extension EnvironmentValues {
     ///
     /// - Discussion:
     ///   Use this property to access the ToastManager from any view in your SwiftUI hierarchy.
-    public var toastManager: ToastManager {
+    var toastManager: ToastManager {
         get { self[ToastManagerKey.self] }
         set { self[ToastManagerKey.self] = newValue }
     }

@@ -9,9 +9,10 @@ import SwiftUI
 import ToastWindow
 
 struct MyToastView: View {
+    
     let toaster = ToastManager()
+    
     @State var message: String
-    let position: ToastPosition
     let bgColor: Color
     /// Total duration that the toast will be visible on screen
     let duration: TimeInterval
@@ -24,26 +25,15 @@ struct MyToastView: View {
     @State private var offsetY: CGFloat
     
     init(message: String,
-         position: ToastPosition = .bottom,
          duration: TimeInterval = 2.6,
          animationDuration: TimeInterval = 0.3,
          bgColor: Color = .gray) {
         self.message = message
-        self.position = position
         self.duration = duration
         self.animationDuration = animationDuration
         self.bgColor = bgColor
-        switch position {
-        case .bottom:
-            self.initialOffsetY = 50
-            self.offsetY = 50
-        case .middle:
-            self.initialOffsetY = 0
-            self.offsetY = 0
-        case .top:
-            self.initialOffsetY = -50
-            self.offsetY = -50
-        }
+        self.initialOffsetY = 50
+        self.offsetY = 50
     }
     
     var body: some View {

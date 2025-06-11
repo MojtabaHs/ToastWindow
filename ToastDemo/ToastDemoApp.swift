@@ -22,38 +22,38 @@ struct ToastDemoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $navPath) {
-                VStack(spacing: 24) {
-                    Button("Testing View") {
-                        navPath.append(NavLocation.testing)
-                    }
-                    .buttonStyle(.bordered)
-                    Button("Checkout Demo") {
-                        navPath.append(NavLocation.checkout)
-                    }
-                    .buttonStyle(.bordered)
-                    Button("Signup Demo") {
-                        navPath.append(NavLocation.signup)
-                    }
-                    .buttonStyle(.bordered)
-                    Button("Chat Demo") {
-                        navPath.append(NavLocation.chat)
-                    }
-                    .buttonStyle(.bordered)
-                }
-                .navigationDestination(for: NavLocation.self, destination: { navLocation in
-                    switch navLocation {
-                    case .testing:
+//            NavigationStack(path: $navPath) {
+//                VStack(spacing: 24) {
+//                    Button("Testing View") {
+//                        navPath.append(NavLocation.testing)
+//                    }
+//                    .buttonStyle(.bordered)
+//                    Button("Checkout Demo") {
+//                        navPath.append(NavLocation.checkout)
+//                    }
+//                    .buttonStyle(.bordered)
+//                    Button("Signup Demo") {
+//                        navPath.append(NavLocation.signup)
+//                    }
+//                    .buttonStyle(.bordered)
+//                    Button("Chat Demo") {
+//                        navPath.append(NavLocation.chat)
+//                    }
+//                    .buttonStyle(.bordered)
+//                }
+//                .navigationDestination(for: NavLocation.self, destination: { navLocation in
+//                    switch navLocation {
+//                    case .testing:
                         TestingView()
-                    case .checkout:
-                        CheckoutView()
-                    case .signup:
-                        SignupView()
-                    case .chat:
-                        ChatView()
-                    }
-                })
-            }
+//                    case .checkout:
+//                        CheckoutView()
+//                    case .signup:
+//                        SignupView()
+//                    case .chat:
+//                        ChatView()
+//                    }
+//                })
+//            }
         }
     }
 }

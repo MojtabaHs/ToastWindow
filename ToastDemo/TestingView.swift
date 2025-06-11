@@ -13,24 +13,11 @@ struct TestingView: View {
     @State var showSheet = false
     @State var textTest = ""
     @Environment(\.toastManager) var toastManager
-    @State var toastPosition: ToastPosition = .bottom
-    
-    var toastPositionPicker: some View {
-        Picker("Toast Position", selection: $toastPosition) {
-            Text("Top").tag(ToastPosition.top)
-            Text("Middle").tag(ToastPosition.middle)
-            Text("Bottom").tag(ToastPosition.bottom)
-        }
-        .pickerStyle(.segmented)
-    }
     
     var showSwiftUIToastButton: some View {
         Button(action: {
-            let toastView = MyToastView(message: "Hello World!",
-                                        position: toastPosition)
-            toastManager.showToast(content: toastView,
-                                   duration: 2.6,
-                                   position: toastPosition)
+            let toastView = MyToastView(message: "Hello World!")
+            toastManager.showToast(content: toastView)
         }, label: {
             Text("Show SwiftUI Toast")
         })
@@ -48,7 +35,6 @@ struct TestingView: View {
     
     var content: some View {
         VStack(spacing: 48) {
-            toastPositionPicker
             TextField("Demo Textfield", text: $textTest)
                 .textFieldStyle(.roundedBorder)
             toggleSheetButton

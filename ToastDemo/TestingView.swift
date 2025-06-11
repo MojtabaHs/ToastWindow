@@ -20,6 +20,7 @@ struct DemoHUDView: View {
                 .cornerRadius(8)
             Spacer()
         }
+        .transition(.opacity)
     }
 }
 
@@ -30,6 +31,14 @@ struct TestingView: View {
     @FocusState var textFieldFocused: Bool
     @Environment(\.toastManager) var toastManager
     @Environment(\.dismissToast) var dismissToast
+    @Environment(\.dismissAllToasts) var dismissAllToasts
+    
+    var dismissAllToastsButton: some View {
+        Button("Dismiss All Toasts") {
+            dismissAllToasts()
+        }
+        .buttonStyle(.bordered)
+    }
     
     var showSwiftUIToastButton: some View {
         Button(action: {
@@ -87,6 +96,7 @@ struct TestingView: View {
     
     var content: some View {
         VStack(spacing: 48) {
+            dismissAllToastsButton
             showCenterSpinner
             testTextField
             toggleSheetButton

@@ -49,16 +49,26 @@ struct ToastWindow {
     }
     
     static func dismissToastWindow(id: UUID) {
-        
         guard let toast = toastWindows[id] else {
             return
         }
         
         toast.onDismiss?()
         toast.window.isHidden = true
-        toast.window.removeFromSuperview()
         toast.window.rootViewController = nil
+        toast.window.removeFromSuperview()
+        toast.window.windowScene = nil
         toastWindows.removeValue(forKey: id)
-
+    }
+    
+    static func dismissAllToastWindows() {
+        for (_, toast) in toastWindows {
+            toast.onDismiss?()
+            toast.window.isHidden = true
+            toast.window.rootViewController = nil
+            toast.window.removeFromSuperview()
+            toast.window.windowScene = nil
+        }
+        toastWindows = [:]
     }
 }

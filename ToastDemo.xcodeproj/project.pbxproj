@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F5F42082DF90A2100920367 /* ToastWindow in Resources */ = {isa = PBXBuildFile; fileRef = 2F5F42072DF90A2100920367 /* ToastWindow */; };
 		2F735A132DF71B160066F971 /* ToastWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 2F735A122DF71B160066F971 /* ToastWindow */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F5F42072DF90A2100920367 /* ToastWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ToastWindow; sourceTree = "<group>"; };
 		2F7359EE2DF6F6910066F971 /* ToastDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToastDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,6 +39,7 @@
 		2F7359E52DF6F6910066F971 = {
 			isa = PBXGroup;
 			children = (
+				2F5F42072DF90A2100920367 /* ToastWindow */,
 				2F7359F02DF6F6910066F971 /* ToastDemo */,
 				2F735A142DF71C870066F971 /* Frameworks */,
 				2F7359EF2DF6F6910066F971 /* Products */,
@@ -109,7 +112,6 @@
 			mainGroup = 2F7359E52DF6F6910066F971;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				2F735A112DF71B160066F971 /* XCLocalSwiftPackageReference "../../ToastWindow" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2F7359EF2DF6F6910066F971 /* Products */;
@@ -126,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F5F42082DF90A2100920367 /* ToastWindow in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,13 +344,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		2F735A112DF71B160066F971 /* XCLocalSwiftPackageReference "../../ToastWindow" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../ToastWindow;
-		};
-/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		2F735A122DF71B160066F971 /* ToastWindow */ = {

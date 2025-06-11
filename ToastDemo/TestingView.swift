@@ -14,28 +14,6 @@ struct TestingView: View {
     @State var textTest = ""
     @Environment(\.toastManager) var toastManager
     @State var toastPosition: ToastPosition = .bottom
-    @State private var offsetMultiplier: CGFloat = 0.0
-    
-    
-    var offsetMultiplierControl: some View {
-        VStack {
-            Text("Offset Multiplier: \(offsetMultiplier, specifier: "%.1f")")
-                .font(.headline)
-            if #available(iOS 17.0, *) {
-                Slider(value: $offsetMultiplier, in: -200...200, step: 10)
-                    .padding()
-                    .onChange(of: offsetMultiplier) {
-                        toastManager.configure(multiToastOffset: offsetMultiplier)
-                    }
-            } else {
-                Slider(value: $offsetMultiplier, in: -200...200, step: 10)
-                    .padding()
-                    .onChange(of: offsetMultiplier) { _ in
-                        toastManager.configure(multiToastOffset: offsetMultiplier)
-                    }
-            }
-        }
-    }
     
     var toastPositionPicker: some View {
         Picker("Toast Position", selection: $toastPosition) {
@@ -70,7 +48,6 @@ struct TestingView: View {
     
     var content: some View {
         VStack(spacing: 48) {
-            offsetMultiplierControl
             toastPositionPicker
             TextField("Demo Textfield", text: $textTest)
                 .textFieldStyle(.roundedBorder)

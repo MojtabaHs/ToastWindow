@@ -13,9 +13,6 @@ public final class ToastManager: Sendable {
     
     /// The secondary UIWindow that toasts are displayed
     @MainActor private var toastWindows: [PassThroughWindow] = []
-    /// The multiplier value to use when multiple toasts are displayed at once
-    @MainActor private var multiToastOffset: CGFloat?
-    @MainActor private var toastOffsets: [ToastPosition: CGFloat] = [:]
     
     /// Returns the app's Key Window
     @MainActor private var activeWindow: UIWindow? {
@@ -25,21 +22,8 @@ public final class ToastManager: Sendable {
             .first { $0.isKeyWindow }
     }
     
-    /// Configures the the ToastManager
-    ///
-    /// - Parameters:
-    ///   - multiToastOffset: An optional offset value that will be applied to Toast views when multiple toasts in the same position are displayed simultaneously
-    @MainActor public func configure(multiToastOffset: CGFloat?) {
-        self.multiToastOffset = multiToastOffset
-    }
-    
     /// Initializes the the ToastManager
-    ///
-    /// - Parameters:
-    ///   - multiToastOffset: An optional offset value that will be applied to Toast views when multiple toasts in the same position are displayed simultaneously
-    public init(multiToastOffset: CGFloat? = nil) {
-        self.multiToastOffset = multiToastOffset
-    }
+    public init() {}
     
     /// Displays a SwiftUI toast view inside a secondary UIWindow, overlaying the active window.
     ///
@@ -83,22 +67,12 @@ public final class ToastManager: Sendable {
         toastWindow.windowLevel = .alert + 1
         toastWindow.backgroundColor = UIColor.clear
         self.toastWindows.append(toastWindow)
-              
-        /// Determine dynamic offset for this position
-        let samePositionWindows = toastWindows.filter {
-            guard let toastView = $0.subviews.first as? SwiftUIToastView else { return false }
-            return toastView.position == position
-        }.count
-        
-        let previousOffset = toastOffsets[position] ?? 0
-        let newOffset = samePositionWindows > 0 ? previousOffset + (multiToastOffset ?? 0) : 0
-        toastOffsets[position] = newOffset
         
         let toastUIView = SwiftUIToastView(content: content,
                                            duration: duration,
                                            parentWindow: toastWindow,
                                            position: position,
-                                           offsetY: offsetY + newOffset)
+                                           offsetY: offsetY)
         toastWindow.isHidden = false
         toastWindow.isUserInteractionEnabled = true
         toastWindow.addSubview(toastUIView)
@@ -107,19 +81,7 @@ public final class ToastManager: Sendable {
         // Schedule window destruction after duration elapses
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
             toastWindow.isHidden = true
-            self?.toastWindows.removeAll(where: { $0 == toastWindow})
-            
-            // Reset offset if no toasts remain in this position
-            let remainingToasts = self?.toastWindows.count(where: {
-                guard let toastView = $0.subviews.first as? SwiftUIToastView else {
-                    return false
-                }
-                return toastView.position == position
-            })
-            
-            if remainingToasts == 0 {
-                self?.toastOffsets[position] = 0
-            }
+            self?.toastWindows.removeAll(where: { $0 == toastWindow })
         }
     }
 }

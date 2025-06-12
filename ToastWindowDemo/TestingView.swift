@@ -42,7 +42,8 @@ struct TestingView: View {
     
     var showSwiftUIToastButton: some View {
         Button(action: {
-            let toastView = MyToastView(message: "Hello World!")
+            let toastView = MyToastView(message: "Hello World!",
+                                        position: .bottom)
             toastManager.showToast(content: toastView,
                                    duration: 2.6)
         }, label: {
@@ -58,7 +59,7 @@ struct TestingView: View {
                 .onTapGesture {
                     dismissToast(hudId)
                 }
-            let toastId = toastManager.showToast(content: toastView,
+            _ = toastManager.showToast(content: toastView,
                                    id: hudId)
         }, label: {
             Text("Show Spinner Toast")

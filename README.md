@@ -7,6 +7,14 @@
 A lightweight SwiftUI package for displaying toast notifications in iOS applications. ToastWindow creates a secondary window to display toast notifications, ensuring they appear above all other content while maintaining a clean and modern look using any SwiftUI view you pass in.
 
 
+### Control your toasts entirely with SwiftUI (see demo project)
+
+| **Top Toast**  | **Middle Toast**  | **Bottom Toast**  |
+|---------------|-----------------|-----------------|
+| <img src="screenshots/toptoast.gif" width="200"/> | <img src="screenshots/middletoast.gif" width="200"/> | <img src="screenshots/bottomtoast.gif" width="200"/> |
+
+
+
 ## Features
 
 - 🪽 **SwiftUI Toast Views**

@@ -8,48 +8,46 @@
 import SwiftUI
 import ToastWindow
 
+enum ToastPosition {
+    case top, bottom
+}
+
 struct MyToastView: View {
     @State var message: String
     let bgColor: Color
-    /// Total duration that the toast will be visible on screen
     let duration: TimeInterval
-    /// Duration of the movement in and out
     let animationDuration: TimeInterval
-    /// Opacity control
+    let position: ToastPosition
+    
     @State private var isVisible = false
-    /// Start position
-    let initialOffsetY: CGFloat
     @State private var offsetY: CGFloat
     
     init(message: String,
          duration: TimeInterval = 2.6,
          animationDuration: TimeInterval = 0.3,
-         bgColor: Color = .gray) {
+         bgColor: Color = .gray,
+         position: ToastPosition) { // Default to bottom
         self.message = message
         self.duration = duration
         self.animationDuration = animationDuration
         self.bgColor = bgColor
-        self.initialOffsetY = 50
-        self.offsetY = 50
+        self.position = position
+        self.offsetY = (position == .top) ? -50 : 50 // Start above or below
     }
     
     var body: some View {
         VStack {
-            Spacer()
+            if position == .bottom { Spacer() }
             Text(message)
                 .padding()
+                .font(.title2)
+                .fontWeight(.semibold)
+                .frame(maxWidth: .infinity)
                 .background(bgColor)
                 .foregroundColor(.white)
                 .cornerRadius(8)
                 .opacity(isVisible ? 1 : 0)
                 .offset(y: offsetY)
-                .onTapGesture {
-                    message = "Tapped!!!"
-                }
-                .gesture(DragGesture().onEnded({ _ in
-                    message = "Swiped!!!"
-                }))
-                .contentShape(Rectangle())
                 .onAppear {
                     withAnimation(.easeInOut(duration: animationDuration)) {
                         offsetY = 0
@@ -57,11 +55,14 @@ struct MyToastView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + (duration - animationDuration)) {
                         withAnimation(.easeInOut(duration: animationDuration)) {
-                            offsetY = initialOffsetY
+                            offsetY = (position == .top) ? -50 : 50
                             isVisible = false
                         }
                     }
                 }
+            if position == .top { Spacer() }
         }
+        .padding(.horizontal, 24)
     }
 }
+

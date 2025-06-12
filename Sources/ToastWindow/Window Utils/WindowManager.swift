@@ -21,7 +21,7 @@ import SwiftUI
             assertionFailure("ToastWindow Error: Active UIWindowScene not found")
             return
         }
-        let keyWindow = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
+
         let window = PassThroughWindow(windowScene: scene)
                 
         
@@ -33,8 +33,6 @@ import SwiftUI
         window.rootViewController = controller
         window.windowLevel = .alert + 1
         window.isHidden = false
-
-//        keyWindow?.makeKey()
         
         toastWindows[id] = ToastWindow(window: window,
                                        onDismiss: onDismiss)

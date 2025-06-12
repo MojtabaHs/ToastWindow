@@ -7,47 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F0C86642DFA720C00CFC831 /* ToastWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 2F0C86632DFA720C00CFC831 /* ToastWindow */; };
+		2F38F7562DFB0AA7005AD27F /* ToastWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 2F0C86632DFA720C00CFC831 /* ToastWindow */; };
+		2FA813972DFB090E0013C9CB /* MyToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813942DFB090E0013C9CB /* MyToastView.swift */; };
+		2FA813982DFB090E0013C9CB /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813912DFB090E0013C9CB /* CheckoutView.swift */; };
+		2FA813992DFB090E0013C9CB /* ToastDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813962DFB090E0013C9CB /* ToastDemoApp.swift */; };
+		2FA8139A2DFB090E0013C9CB /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813902DFB090E0013C9CB /* ChatView.swift */; };
+		2FA8139B2DFB090E0013C9CB /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813952DFB090E0013C9CB /* TestingView.swift */; };
+		2FA8139C2DFB090E0013C9CB /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813922DFB090E0013C9CB /* SignupView.swift */; };
+		2FA8139D2DFB090E0013C9CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA8138F2DFB090E0013C9CB /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F3DC9E72DFA88AA00BEDE5D /* ToastWindowDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ToastWindowDemo.app; path = "/Users/michaelellis/Documents/GitHub/ToastWindow/build/Debug-iphoneos/ToastWindowDemo.app"; sourceTree = "<absolute>"; };
-		2F3DC9F72DFA88C000BEDE5D /* ToastWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ToastWindow; sourceTree = "<group>"; };
+		2F83546B2DFB0A19002B88AF /* ToastWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ToastWindow; path = ..; sourceTree = "<group>"; };
+		2FA8138F2DFB090E0013C9CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FA813902DFB090E0013C9CB /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		2FA813912DFB090E0013C9CB /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		2FA813922DFB090E0013C9CB /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		2FA813942DFB090E0013C9CB /* MyToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToastView.swift; sourceTree = "<group>"; };
+		2FA813952DFB090E0013C9CB /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
+		2FA813962DFB090E0013C9CB /* ToastDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDemoApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		2FDF55062DFA6C8F004B4195 /* ToastWindowDemo */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ToastWindowDemo;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2FDF55012DFA6C8F004B4195 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F0C86642DFA720C00CFC831 /* ToastWindow in Frameworks */,
+				2F38F7562DFB0AA7005AD27F /* ToastWindow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F0C865F2DFA71C900CFC831 /* Frameworks */ = {
+		2F8354682DFB0A0E002B88AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F3DC9F72DFA88C000BEDE5D /* ToastWindow */,
+				2F83546B2DFB0A19002B88AF /* ToastWindow */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FA813932DFB090E0013C9CB /* Demo Views */ = {
+			isa = PBXGroup;
+			children = (
+				2FA813902DFB090E0013C9CB /* ChatView.swift */,
+				2FA813912DFB090E0013C9CB /* CheckoutView.swift */,
+				2FA813922DFB090E0013C9CB /* SignupView.swift */,
+			);
+			path = "Demo Views";
 			sourceTree = "<group>";
 		};
 		2FDF54FB2DFA6C8F004B4195 = {
 			isa = PBXGroup;
 			children = (
-				2FDF55062DFA6C8F004B4195 /* ToastWindowDemo */,
-				2F0C865F2DFA71C900CFC831 /* Frameworks */,
+				2FA8138F2DFB090E0013C9CB /* Assets.xcassets */,
+				2FA813932DFB090E0013C9CB /* Demo Views */,
+				2FA813942DFB090E0013C9CB /* MyToastView.swift */,
+				2FA813952DFB090E0013C9CB /* TestingView.swift */,
+				2FA813962DFB090E0013C9CB /* ToastDemoApp.swift */,
+				2F8354682DFB0A0E002B88AF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,15 +85,11 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				2FDF55062DFA6C8F004B4195 /* ToastWindowDemo */,
-			);
 			name = ToastWindowDemo;
 			packageProductDependencies = (
 				2F0C86632DFA720C00CFC831 /* ToastWindow */,
 			);
 			productName = ToastWindowDemo;
-			productReference = 2F3DC9E72DFA88AA00BEDE5D /* ToastWindowDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -118,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA8139D2DFB090E0013C9CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +144,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA813972DFB090E0013C9CB /* MyToastView.swift in Sources */,
+				2FA813982DFB090E0013C9CB /* CheckoutView.swift in Sources */,
+				2FA813992DFB090E0013C9CB /* ToastDemoApp.swift in Sources */,
+				2FA8139A2DFB090E0013C9CB /* ChatView.swift in Sources */,
+				2FA8139B2DFB090E0013C9CB /* TestingView.swift in Sources */,
+				2FA8139C2DFB090E0013C9CB /* SignupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

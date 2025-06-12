@@ -7,156 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F38F7562DFB0AA7005AD27F /* ToastWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 2F0C86632DFA720C00CFC831 /* ToastWindow */; };
-		2FA813972DFB090E0013C9CB /* MyToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813942DFB090E0013C9CB /* MyToastView.swift */; };
-		2FA813982DFB090E0013C9CB /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813912DFB090E0013C9CB /* CheckoutView.swift */; };
-		2FA813992DFB090E0013C9CB /* ToastDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813962DFB090E0013C9CB /* ToastDemoApp.swift */; };
-		2FA8139A2DFB090E0013C9CB /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813902DFB090E0013C9CB /* ChatView.swift */; };
-		2FA8139B2DFB090E0013C9CB /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813952DFB090E0013C9CB /* TestingView.swift */; };
-		2FA8139C2DFB090E0013C9CB /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA813922DFB090E0013C9CB /* SignupView.swift */; };
-		2FA8139D2DFB090E0013C9CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FA8138F2DFB090E0013C9CB /* Assets.xcassets */; };
+		2FF8E0922DFB15E7006B7CE0 /* ToastWindow in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF8E0912DFB15E7006B7CE0 /* ToastWindow */; };
+		2FF8E0942DFB15FD006B7CE0 /* ToastWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF8E0932DFB15FD006B7CE0 /* ToastWindow */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F83546B2DFB0A19002B88AF /* ToastWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ToastWindow; path = ..; sourceTree = "<group>"; };
-		2FA8138F2DFB090E0013C9CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2FA813902DFB090E0013C9CB /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		2FA813912DFB090E0013C9CB /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
-		2FA813922DFB090E0013C9CB /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
-		2FA813942DFB090E0013C9CB /* MyToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToastView.swift; sourceTree = "<group>"; };
-		2FA813952DFB090E0013C9CB /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
-		2FA813962DFB090E0013C9CB /* ToastDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDemoApp.swift; sourceTree = "<group>"; };
+		2FF8E0912DFB15E7006B7CE0 /* ToastWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ToastWindow; path = ..; sourceTree = "<group>"; };
+		2FFCAB902DFB1592008817C3 /* ToastWindowDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToastWindowDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2FFCAB922DFB1592008817C3 /* ToastWindowDemo */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ToastWindowDemo;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
-		2FDF55012DFA6C8F004B4195 /* Frameworks */ = {
+		2FFCAB8D2DFB1592008817C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F38F7562DFB0AA7005AD27F /* ToastWindow in Frameworks */,
+				2FF8E0942DFB15FD006B7CE0 /* ToastWindow in Frameworks */,
+				2FF8E0922DFB15E7006B7CE0 /* ToastWindow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F8354682DFB0A0E002B88AF /* Frameworks */ = {
+		2FF8E0902DFB15E7006B7CE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F83546B2DFB0A19002B88AF /* ToastWindow */,
+				2FF8E0912DFB15E7006B7CE0 /* ToastWindow */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2FA813932DFB090E0013C9CB /* Demo Views */ = {
+		2FFCAB872DFB1592008817C3 = {
 			isa = PBXGroup;
 			children = (
-				2FA813902DFB090E0013C9CB /* ChatView.swift */,
-				2FA813912DFB090E0013C9CB /* CheckoutView.swift */,
-				2FA813922DFB090E0013C9CB /* SignupView.swift */,
+				2FFCAB922DFB1592008817C3 /* ToastWindowDemo */,
+				2FF8E0902DFB15E7006B7CE0 /* Frameworks */,
+				2FFCAB912DFB1592008817C3 /* Products */,
 			);
-			path = "Demo Views";
 			sourceTree = "<group>";
 		};
-		2FDF54FB2DFA6C8F004B4195 = {
+		2FFCAB912DFB1592008817C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2FA8138F2DFB090E0013C9CB /* Assets.xcassets */,
-				2FA813932DFB090E0013C9CB /* Demo Views */,
-				2FA813942DFB090E0013C9CB /* MyToastView.swift */,
-				2FA813952DFB090E0013C9CB /* TestingView.swift */,
-				2FA813962DFB090E0013C9CB /* ToastDemoApp.swift */,
-				2F8354682DFB0A0E002B88AF /* Frameworks */,
+				2FFCAB902DFB1592008817C3 /* ToastWindowDemo.app */,
 			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2FDF55032DFA6C8F004B4195 /* ToastWindowDemo */ = {
+		2FFCAB8F2DFB1592008817C3 /* ToastWindowDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2FDF550F2DFA6C90004B4195 /* Build configuration list for PBXNativeTarget "ToastWindowDemo" */;
+			buildConfigurationList = 2FFCAB9B2DFB1594008817C3 /* Build configuration list for PBXNativeTarget "ToastWindowDemo" */;
 			buildPhases = (
-				2FDF55002DFA6C8F004B4195 /* Sources */,
-				2FDF55012DFA6C8F004B4195 /* Frameworks */,
-				2FDF55022DFA6C8F004B4195 /* Resources */,
+				2FFCAB8C2DFB1592008817C3 /* Sources */,
+				2FFCAB8D2DFB1592008817C3 /* Frameworks */,
+				2FFCAB8E2DFB1592008817C3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				2FFCAB922DFB1592008817C3 /* ToastWindowDemo */,
+			);
 			name = ToastWindowDemo;
 			packageProductDependencies = (
-				2F0C86632DFA720C00CFC831 /* ToastWindow */,
+				2FF8E0932DFB15FD006B7CE0 /* ToastWindow */,
 			);
 			productName = ToastWindowDemo;
+			productReference = 2FFCAB902DFB1592008817C3 /* ToastWindowDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2FDF54FC2DFA6C8F004B4195 /* Project object */ = {
+		2FFCAB882DFB1592008817C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					2FDF55032DFA6C8F004B4195 = {
+					2FFCAB8F2DFB1592008817C3 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
-			buildConfigurationList = 2FDF54FF2DFA6C8F004B4195 /* Build configuration list for PBXProject "ToastWindowDemo" */;
+			buildConfigurationList = 2FFCAB8B2DFB1592008817C3 /* Build configuration list for PBXProject "ToastWindowDemo" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 2FDF54FB2DFA6C8F004B4195;
+			mainGroup = 2FFCAB872DFB1592008817C3;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 2FDF54FB2DFA6C8F004B4195;
+			productRefGroup = 2FFCAB912DFB1592008817C3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2FDF55032DFA6C8F004B4195 /* ToastWindowDemo */,
+				2FFCAB8F2DFB1592008817C3 /* ToastWindowDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2FDF55022DFA6C8F004B4195 /* Resources */ = {
+		2FFCAB8E2DFB1592008817C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FA8139D2DFB090E0013C9CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2FDF55002DFA6C8F004B4195 /* Sources */ = {
+		2FFCAB8C2DFB1592008817C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FA813972DFB090E0013C9CB /* MyToastView.swift in Sources */,
-				2FA813982DFB090E0013C9CB /* CheckoutView.swift in Sources */,
-				2FA813992DFB090E0013C9CB /* ToastDemoApp.swift in Sources */,
-				2FA8139A2DFB090E0013C9CB /* ChatView.swift in Sources */,
-				2FA8139B2DFB090E0013C9CB /* TestingView.swift in Sources */,
-				2FA8139C2DFB090E0013C9CB /* SignupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		2FDF550D2DFA6C90004B4195 /* Debug */ = {
+		2FFCAB992DFB1594008817C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -220,7 +207,7 @@
 			};
 			name = Debug;
 		};
-		2FDF550E2DFA6C90004B4195 /* Release */ = {
+		2FFCAB9A2DFB1594008817C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -277,7 +264,7 @@
 			};
 			name = Release;
 		};
-		2FDF55102DFA6C90004B4195 /* Debug */ = {
+		2FFCAB9C2DFB1594008817C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -305,7 +292,7 @@
 			};
 			name = Debug;
 		};
-		2FDF55112DFA6C90004B4195 /* Release */ = {
+		2FFCAB9D2DFB1594008817C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -336,20 +323,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2FDF54FF2DFA6C8F004B4195 /* Build configuration list for PBXProject "ToastWindowDemo" */ = {
+		2FFCAB8B2DFB1592008817C3 /* Build configuration list for PBXProject "ToastWindowDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2FDF550D2DFA6C90004B4195 /* Debug */,
-				2FDF550E2DFA6C90004B4195 /* Release */,
+				2FFCAB992DFB1594008817C3 /* Debug */,
+				2FFCAB9A2DFB1594008817C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2FDF550F2DFA6C90004B4195 /* Build configuration list for PBXNativeTarget "ToastWindowDemo" */ = {
+		2FFCAB9B2DFB1594008817C3 /* Build configuration list for PBXNativeTarget "ToastWindowDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2FDF55102DFA6C90004B4195 /* Debug */,
-				2FDF55112DFA6C90004B4195 /* Release */,
+				2FFCAB9C2DFB1594008817C3 /* Debug */,
+				2FFCAB9D2DFB1594008817C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -357,11 +344,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2F0C86632DFA720C00CFC831 /* ToastWindow */ = {
+		2FF8E0932DFB15FD006B7CE0 /* ToastWindow */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ToastWindow;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 2FDF54FC2DFA6C8F004B4195 /* Project object */;
+	rootObject = 2FFCAB882DFB1592008817C3 /* Project object */;
 }

@@ -9,9 +9,13 @@ import SwiftUI
 import ToastWindow
 
 struct DemoHUDView: View {
+    
+    @State var textTest = ""
+    
     var body: some View {
         VStack {
             Spacer()
+            TextField("Hello", text: $textTest)
             ProgressView()
                 .progressViewStyle(.circular)
                 .frame(width: 180, height: 180)
@@ -23,6 +27,7 @@ struct DemoHUDView: View {
         .transition(.opacity)
     }
 }
+
 
 struct TestingView: View {
     
@@ -56,9 +61,6 @@ struct TestingView: View {
         Button(action: {
             let hudId = ToastID()
             let toastView = DemoHUDView()
-                .onTapGesture {
-                    dismissToast(hudId)
-                }
             _ = toastManager.showToast(content: toastView,
                                    id: hudId)
         }, label: {

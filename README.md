@@ -13,6 +13,10 @@ A lightweight Swift package for displaying SwiftUI View's as toast notifications
 | **Top Toast**  | **Middle Toast**  | **Bottom Toast**  |
 |---------------|-----------------|-----------------|
 | <img src="screenshots/toptoast.gif" width="200"/> | <img src="screenshots/middletoast.gif" width="200"/> | <img src="screenshots/bottomtoast.gif" width="200"/> |
+| **Gesture Toast**  | **Rotating Toast**  | **TextField Toast**  |
+| <img src="screenshots/dragtoast.gif" width="200"/> | <img src="screenshots/rotatetoast.gif" width="200"/> | <img src="screenshots/textfieldtoast.gif" width="200"/> |
+| **Sheet Toast** |
+| <img src="screenshots/sheettoast.gif" width="200"/> | 
 
 
 
@@ -26,6 +30,7 @@ A lightweight Swift package for displaying SwiftUI View's as toast notifications
     - ✋ **Gesture Handling** – Enable **touch and swipe** gestures, such as dismissing by tap or swipe
     - 📌 **Positioning Control** - Use SwiftUI to position your content
     - 🔄 **Device Rotation** - Position will update when the device rotates
+    - 📝 **Input Fields** - Use TextFields and other inputs
 - 🔝 **Displays on top of everything** including sheets from the `.sheet` SwiftUI modifier
 - 🔄 **Built-in Window management** - Prevent memory leaks
 - 🔒 **Thread Safety** - Ensures UI updates occur on the main thread
@@ -128,6 +133,13 @@ toastManager.showToast(content: SuccessToast(),
 ## Contributing
 
 Contributions are welcome! Please feel free to Fork and submit a Pull Request.
+
+## Known Issues
+### Help Wanted!
+
+- Keyboard avoidance is not fully functional
+- FocusState doesn't work as expected with pulling up the keyboard
+    - Different behavior on device and simulators
 
 ## Author
 

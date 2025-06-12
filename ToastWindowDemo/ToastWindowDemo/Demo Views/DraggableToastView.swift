@@ -1,43 +1,48 @@
 //
-//  MyToastView.swift
-//  ToastDemo
+//  DraggableToastView.swift
+//  ToastWindowDemo
 //
-//  Created by Michael Ellis on 6/9/25.
+//  Created by Michael Ellis on 6/12/25.
 //
 
 import SwiftUI
 import ToastWindow
 
-enum ToastPosition {
-    case top, bottom
+struct DragView: View {
+    
+    @Environment(\.toastManager) var toastManager
+    @Environment(\.dismissAllToasts) var dismissAllToasts
+    
+    var body: some View {
+        Button("Open Draggable Toast") {
+            toastManager.showToast(content: DraggableToastView(message: "Drag this toast! 🍞🍴🧈", duration: 4.0, animationDuration: 0.5, bgColor: .blue))
+        }
+        .buttonStyle(.bordered)
+    }
 }
 
-struct MyToastView: View {
+struct DraggableToastView: View {
     @State var message: String
     let bgColor: Color
     let duration: TimeInterval
     let animationDuration: TimeInterval
-    let position: ToastPosition
     
     @State private var isVisible = false
-    @State private var offsetY: CGFloat
-    
+    @State private var dragOffset: CGSize = .zero
+
     init(message: String,
          duration: TimeInterval = 2.6,
          animationDuration: TimeInterval = 0.3,
-         bgColor: Color = .gray,
-         position: ToastPosition) { // Default to bottom
+         bgColor: Color = .gray) {
         self.message = message
         self.duration = duration
         self.animationDuration = animationDuration
         self.bgColor = bgColor
-        self.position = position
-        self.offsetY = (position == .top) ? -50 : 50 // Start above or below
     }
     
     var body: some View {
         VStack {
-            if position == .bottom { Spacer() }
+            Spacer()
             Text(message)
                 .padding()
                 .font(.title2)
@@ -47,22 +52,30 @@ struct MyToastView: View {
                 .foregroundColor(.white)
                 .cornerRadius(8)
                 .opacity(isVisible ? 1 : 0)
-                .offset(y: offsetY)
+                .offset(x: dragOffset.width, y: dragOffset.height)
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            dragOffset = value.translation
+                        }
+                        .onEnded { _ in
+                            withAnimation(.spring()) {
+                                dragOffset = dragOffset // Keep its new position
+                            }
+                        }
+                )
                 .onAppear {
                     withAnimation(.easeInOut(duration: animationDuration)) {
-                        offsetY = 0
                         isVisible = true
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + (duration - animationDuration)) {
                         withAnimation(.easeInOut(duration: animationDuration)) {
-                            offsetY = (position == .top) ? -50 : 50
                             isVisible = false
                         }
                     }
                 }
-            if position == .top { Spacer() }
+            Spacer()
         }
         .padding(.horizontal, 24)
     }
 }
-

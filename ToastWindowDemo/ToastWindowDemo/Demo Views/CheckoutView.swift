@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CheckoutView: View {
     @State private var isProcessing = false
-    @State private var purchaseSuccess: Bool = false
+    @State private var purchaseSuccess = false
+    @State private var showAppleOffer = false
     
     @Environment(\.toastManager) private var toastManager
     
@@ -45,6 +46,20 @@ struct CheckoutView: View {
                     .font(.title2)
                     .bold()
                 
+                Button(action: {
+                    showAppleOffer = true
+                }) {
+                    Text("🍎 See Special Offers")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color(.systemOrange))
+                                .shadow(radius: 6)
+                        )
+                        .foregroundColor(.black)
+                }
+                
                 Button(action: processPurchase) {
                     Text(isProcessing ? "🥯 Toasting... 🔥" : "🧈 Complete Order")
                         .frame(maxWidth: .infinity)
@@ -63,6 +78,48 @@ struct CheckoutView: View {
                 .font(.caption)
                 .foregroundColor(.black)
             Spacer()
+        }
+        .padding().padding()
+        .sheet(isPresented: $showAppleOffer) {
+            appleOfferSheet
+        }
+    }
+
+    private var appleOfferSheet: some View {
+        VStack(spacing: 20) {
+            Text("🍏 Would you like to add apples?")
+                .font(.title)
+                .bold()
+
+            Text("Just $1.99 for a fresh addition!")
+                .font(.title2)
+
+            HStack {
+                Button("✅ Yes, add and buy") {
+                    showAppleOffer = false
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.green.opacity(0.8))
+                )
+                .foregroundColor(.white)
+
+                Button("❌ No, buy as-is") {
+//                    showAppleOffer = false
+                    let dragToast = DraggableToastView(message: "No Apples For You!")
+                    _ = toastManager.showToast(content: dragToast, duration: 2.0)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.red.opacity(0.8))
+                )
+                .foregroundColor(.white)
+            }
+            .padding()
         }
         .padding()
     }

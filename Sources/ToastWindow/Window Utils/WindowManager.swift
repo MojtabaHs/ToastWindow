@@ -8,10 +8,21 @@
 import UIKit
 import SwiftUI
 
+/// A manager class that handles the creation and management of toast windows.
+///
+/// The `WindowManager` is responsible for creating, tracking, and dismissing toast windows.
+/// It maintains a dictionary of active toast windows and provides methods to manage their lifecycle.
 @MainActor enum WindowManager {
     
     private static var toastWindows: [ToastID: ToastWindow] = [:]
         
+    /// Creates a new toast window with the specified content and configuration.
+    /// - Parameters:
+    ///   - content: The SwiftUI view to display in the toast window.
+    ///   - duration: Optional time interval after which the toast will automatically dismiss.
+    ///   - id: Unique identifier for the toast window.
+    ///   - isUserInteractionEnabled: Whether the toast window should respond to user interactions.
+    ///   - onDismiss: Optional closure to be called when the toast is dismissed.
     static func createToastWindow<V: View>(content: V,
                                            duration: TimeInterval?,
                                            id: ToastID,
@@ -44,6 +55,8 @@ import SwiftUI
         }
     }
     
+    /// Dismisses a specific toast window by its ID.
+    /// - Parameter id: The unique identifier of the toast window to dismiss.
     static func dismissToastWindow(id: ToastID) {
         guard let toast = toastWindows[id] else {
             return
@@ -57,6 +70,7 @@ import SwiftUI
         toastWindows.removeValue(forKey: id)
     }
     
+    /// Dismisses all active toast windows.
     static func dismissAllToastWindows() {
         for (_, toast) in toastWindows {
             toast.onDismiss?()

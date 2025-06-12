@@ -24,7 +24,6 @@ A lightweight SwiftUI package for displaying toast notifications in iOS applicat
     - 🎭 **Customizable Animations** – Build animations using SwiftUI Modifiers
     - ✋ **Gesture Handling** – Enable **touch and swipe** gestures, such as dismissing by tap or swipe
     - 📌 **Positioning Control** - Use SwiftUI to position your content
-    - 👩🏻‍💻 **Keyboard Avoidance** - Avoids safe areas unless disabled
     - 🔄 **Device Rotation** - Position will update when the device rotates
 - 🔝 **Displays on top of everything** including sheets from the `.sheet` SwiftUI modifier
 - 🔄 **Built-in Window management** - Prevent memory leaks
@@ -63,16 +62,58 @@ https://github.com/michael94ellis/ToastWindow.git
 import SwiftUI
 import ToastWindow
 
-// TODO
-
+struct ContentView: View {
+    @Environment(\.toastManager) private var toastManager
+    
+    var body: some View {
+        Button("Show Toast") {
+            toastManager.showToast(
+                content: Text("Hello, World!")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10),
+                duration: 2.0
+            )
+        }
+    }
+}
 ```
 
 ### Custom Toast Content
 
 ```swift
+struct SuccessToast: View {
+    
+    @State private var isVisible = false
+    
+    var body: some View {
+        Text("Account Created Successfully")
+            .multilineTextAlignment(.center)
+            .foregroundStyle(.white)
+            .font(.title.weight(.semibold))
+            .frame(width: 250, height: 150) 
+            .background(Color(.systemGreen))
+            .cornerRadius(25) 
+            .shadow(radius: 5)
+            .opacity(isVisible ? 1 : 0)
+            .scaleEffect(isVisible ? 1 : 0.2)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    isVisible = true
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        isVisible = false
+                    }
+                }
+            }
+    }
+}
 
-// TODO
-
+// Usage:
+toastManager.showToast(content: SuccessToast(),
+                       duration: 3.0)
 ```
 
 ------

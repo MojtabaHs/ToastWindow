@@ -12,6 +12,7 @@ public typealias ToastID = UUID
 
 public typealias DismissClosure = () -> Void
 
+
 public final class ToastManager: Sendable {
     
     public init() { }

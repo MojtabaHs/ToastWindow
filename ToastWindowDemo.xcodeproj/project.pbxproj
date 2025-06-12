@@ -11,8 +11,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F3A454F2DFA73B500DED888 /* ToastWindowDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ToastWindowDemo.app; path = "/Users/michaelellis/Documents/GitHub/ToastWindow/build/Debug-iphoneos/ToastWindowDemo.app"; sourceTree = "<absolute>"; };
-		2F3A455F2DFA73C500DED888 /* ToastWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ToastWindow; sourceTree = "<group>"; };
+		2F3DC9E72DFA88AA00BEDE5D /* ToastWindowDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ToastWindowDemo.app; path = "/Users/michaelellis/Documents/GitHub/ToastWindow/build/Debug-iphoneos/ToastWindowDemo.app"; sourceTree = "<absolute>"; };
+		2F3DC9F72DFA88C000BEDE5D /* ToastWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ToastWindow; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,7 +38,7 @@
 		2F0C865F2DFA71C900CFC831 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2F3A455F2DFA73C500DED888 /* ToastWindow */,
+				2F3DC9F72DFA88C000BEDE5D /* ToastWindow */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -74,7 +74,7 @@
 				2F0C86632DFA720C00CFC831 /* ToastWindow */,
 			);
 			productName = ToastWindowDemo;
-			productReference = 2F3A454F2DFA73B500DED888 /* ToastWindowDemo.app */;
+			productReference = 2F3DC9E72DFA88AA00BEDE5D /* ToastWindowDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

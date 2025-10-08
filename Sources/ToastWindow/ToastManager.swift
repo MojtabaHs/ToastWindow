@@ -32,6 +32,7 @@ public final class ToastManager: Sendable {
     /// - Returns: The unique identifier of the created toast which can be used to dismiss it.
     ///
     /// - Note: Toasts can be dismissed any time by calling `dismissToast(id:)` of the manger and passing their `id`s.
+    @available(*, deprecated, message: "Use the overload that takes content as a closure instead")
     @discardableResult
     @MainActor public func showToast<V: View>(content: V,
                                               duration: TimeInterval? = 2.5,

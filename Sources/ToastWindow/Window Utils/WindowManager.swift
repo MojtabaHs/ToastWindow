@@ -22,7 +22,7 @@ import SwiftUI
     ///   - duration: Optional time interval after which the toast will automatically dismiss.
     ///   - id: Unique identifier for the toast window.
     ///   - isUserInteractionEnabled: Whether the toast window should respond to user interactions.
-    ///   - onDismiss: Optional closure to be called when the toast is dismissed.
+    ///   - onDismiss: A closure to be called when the toast is dismissed.
     static func createToastWindow<V: View>(content: V,
                                            duration: TimeInterval?,
                                            id: ToastID,

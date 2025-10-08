@@ -37,7 +37,7 @@ public final class ToastManager: Sendable {
                                               duration: TimeInterval? = 2.5,
                                               id: ToastID = ToastID(),
                                               isUserInteractionEnabled: Bool = true,
-                                              onDismiss: (() -> Void)? = nil) -> UUID {
+                                              onDismiss: @escaping (() -> Void) = { }) -> UUID {
         
         WindowManager.createToastWindow(content: content,
                                         duration: duration,

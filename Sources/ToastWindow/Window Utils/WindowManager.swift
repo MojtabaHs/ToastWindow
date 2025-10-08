@@ -27,7 +27,7 @@ import SwiftUI
                                            duration: TimeInterval?,
                                            id: ToastID,
                                            isUserInteractionEnabled: Bool,
-                                           onDismiss: (() -> ())?) {
+                                           onDismiss: @escaping (() -> ())) {
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             assertionFailure("ToastWindow Error: Active UIWindowScene not found")
             return
@@ -62,7 +62,7 @@ import SwiftUI
             return
         }
         
-        toast.onDismiss?()
+        toast.onDismiss()
         toast.window.isHidden = true
         toast.window.rootViewController = nil
         toast.window.removeFromSuperview()
@@ -73,7 +73,7 @@ import SwiftUI
     /// Dismisses all active toast windows.
     static func dismissAllToastWindows() {
         for (_, toast) in toastWindows {
-            toast.onDismiss?()
+            toast.onDismiss()
             toast.window.isHidden = true
             toast.window.rootViewController = nil
             toast.window.removeFromSuperview()

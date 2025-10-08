@@ -25,7 +25,7 @@ public final class ToastManager: Sendable {
     ///   - content: The SwiftUI view to display in the toast.
     ///   - duration: The time interval after which the toast will automatically dismiss.
     ///               Passing `nil` causes the toast remains visible until manually dismissed.
-    ///               The default value is `2.5`.
+    ///               The default value is `2.5`
     ///   - id: A unique identifier for the toast. If not provided, a new UUID will be generated.
     ///   - isUserInteractionEnabled: Whether the toast should respond to user interactions.
     ///   - onDismiss: A closure to be called when the toast is dismissed.
@@ -44,28 +44,8 @@ public final class ToastManager: Sendable {
                                         onDismiss: onDismiss)
         return id
     }
-    
-    /// Shows a toast notification with the specified content and returns a closure to dismiss it.
-    /// - Parameters:
-    ///   - content: The SwiftUI view to display in the toast.
-    ///   - id: A unique identifier for the toast. If not provided, a new UUID will be generated.
-    ///   - isUserInteractionEnabled: Whether the toast should respond to user interactions.
-    /// - Returns: A closure that can be called to dismiss the toast.
-    @MainActor public func showToast<V: View>(content: V,
-                                              id: ToastID = ToastID(),
-                                              isUserInteractionEnabled: Bool = true) -> DismissClosure {
-        
-        WindowManager.createToastWindow(content: content,
-                                        duration: nil,
-                                        id: id,
-                                        isUserInteractionEnabled: isUserInteractionEnabled,
-                                        onDismiss: nil)
-        
-        // Pass back the dismiss action
-        let dismissAction: () -> Void = {
-            WindowManager.dismissToastWindow(id: id)
-        }
-        
-        return dismissAction
+
+    @MainActor public func dismissToast(id: ToastID) {
+        WindowManager.dismissToastWindow(id: id)
     }
 }

@@ -30,6 +30,8 @@ public final class ToastManager: Sendable {
     ///   - isUserInteractionEnabled: Whether the toast should respond to user interactions.
     ///   - onDismiss: A closure to be called when the toast is dismissed.
     /// - Returns: The unique identifier of the created toast which can be used to dismiss it.
+    ///
+    /// - Note: Toasts can be dismissed any time by calling `dismissToast(id:)` of the manger and passing their `id`s.
     @discardableResult
     @MainActor public func showToast<V: View>(content: V,
                                               duration: TimeInterval? = 2.5,

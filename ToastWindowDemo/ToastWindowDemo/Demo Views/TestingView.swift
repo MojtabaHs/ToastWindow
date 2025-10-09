@@ -60,9 +60,10 @@ struct TestingView: View {
     var showCenterSpinner: some View {
         Button(action: {
             let hudId = ToastID()
-            let toastView = DemoHUDView()
-            toastManager.showToast(id: hudId,
-                                   content: { toastView })
+
+            toastManager.showToast(id: hudId) {
+                DemoHUDView()
+            }
         }, label: {
             Text("Show Spinner Toast")
         })

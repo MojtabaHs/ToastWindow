@@ -14,6 +14,6 @@ import UIKit
 struct ToastWindow {
     /// The UIWindow instance that displays the toast content.
     let window: UIWindow
-    /// An optional closure that will be called when the toast is dismissed.
-    let onDismiss: (() -> ())?
+    /// A closure that will be called when the toast is dismissed.
+    let onDismiss: (() -> ())
 }

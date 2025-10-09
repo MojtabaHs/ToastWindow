@@ -141,9 +141,6 @@ Contributions are welcome! Please feel free to Fork and submit a Pull Request.
 - FocusState doesn't work as expected with pulling up the keyboard
     - Different behavior on device and simulators
 
-## Author
-
-Michael Ellis
 
 ## Acknowledgments
 

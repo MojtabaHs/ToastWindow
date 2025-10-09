@@ -73,14 +73,13 @@ struct ContentView: View {
     
     var body: some View {
         Button("Show Toast") {
-            toastManager.showToast(
-                content: Text("Hello, World!")
+            toastManager.showToast(duration: 2.0) { 
+                Text("Hello, World!")
                     .padding()
                     .background(Color.blue)
                     .foregroundColor(.white)
-                    .cornerRadius(10),
-                duration: 2.0
-            )
+                    .cornerRadius(10)
+            }
         }
     }
 }
@@ -118,8 +117,9 @@ struct SuccessToast: View {
 }
 
 // Usage:
-toastManager.showToast(content: SuccessToast(),
-                       duration: 3.0)
+toastManager.showToast(duration: 3.0) {
+    SuccessToast()
+}
 ```
 
 ------

@@ -49,8 +49,8 @@ struct TestingView: View {
         Button(action: {
             let toastView = MyToastView(message: "Hello World!",
                                         position: .bottom)
-            toastManager.showToast(content: toastView,
-                                   duration: 2.6)
+            toastManager.showToast(duration: 2.6,
+                                   content: { toastView })
         }, label: {
             Text("Show SwiftUI Toast")
         })
@@ -61,8 +61,8 @@ struct TestingView: View {
         Button(action: {
             let hudId = ToastID()
             let toastView = DemoHUDView()
-            _ = toastManager.showToast(content: toastView,
-                                   id: hudId)
+            toastManager.showToast(id: hudId,
+                                   content: { toastView })
         }, label: {
             Text("Show Spinner Toast")
         })
@@ -89,17 +89,19 @@ struct TestingView: View {
             TextField("Demo Textfield", text: $textTest)
                 .textFieldStyle(.roundedBorder)
                 .focused($textFieldFocused)
-                .onChange(of: textTest, perform: { _ in
-                    toastManager.showToast(content: VStack {
-                        Text(textTest)
-                            .padding()
-                            .background(.gray)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                        Spacer()
-                    },
-                                           duration: 2.6)
-                })
+                .onChange(of: textTest) {
+                    toastManager.showToast(duration: 2.6,
+                                           content:  {
+                        VStack {
+                            Text(textTest)
+                                .padding()
+                                .background(.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                            Spacer()
+                        }
+                    })
+                }
         }
     }
     

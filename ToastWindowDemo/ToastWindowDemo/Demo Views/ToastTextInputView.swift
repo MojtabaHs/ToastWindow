@@ -11,6 +11,7 @@ import ToastWindow
 struct ToastTextInputView: View {
     
     @Environment(\.toastManager) var toastManager
+    @Environment(\.dismiss) var dismiss
     @State private var userName = "Tim Cook"
     
     var body: some View {
@@ -36,8 +37,8 @@ struct ToastTextInputView: View {
             Button("Update Name") {
                 let id = ToastID()
                 let toastView = OverlayTextInputToastView(toastID: id, userName: $userName)
-                _ = toastManager.showToast(content: toastView,
-                                       id: id)
+                toastManager.showToast(id: id,
+                                       content: { toastView })
             }
             .padding()
             .frame(maxWidth: .infinity)
@@ -47,8 +48,7 @@ struct ToastTextInputView: View {
             .shadow(radius: 4)
             
             Button("Close") {
-                let toastID = UUID()
-                _ = toastManager.showToast(content: self, id: toastID)
+                dismiss()
             }
             .padding()
             .frame(maxWidth: .infinity)

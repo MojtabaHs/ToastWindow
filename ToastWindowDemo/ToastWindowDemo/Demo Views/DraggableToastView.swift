@@ -15,9 +15,9 @@ struct DragView: View {
     
     var body: some View {
         Button("Open Draggable Toast") {            
-            toastManager.showToast(content: {
+            toastManager.showToast {
                 DraggableToastView(message: "Drag this toast! 🍞🍴🧈", duration: 4.0, animationDuration: 0.5, bgColor: .blue)
-            })
+            }
         }
         .buttonStyle(.bordered)
     }

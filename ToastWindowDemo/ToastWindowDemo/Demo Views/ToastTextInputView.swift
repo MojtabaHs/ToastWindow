@@ -36,9 +36,10 @@ struct ToastTextInputView: View {
             
             Button("Update Name") {
                 let id = ToastID()
-                let toastView = OverlayTextInputToastView(toastID: id, userName: $userName)
-                toastManager.showToast(id: id,
-                                       content: { toastView })
+
+                toastManager.showToast(id: id) {
+                    OverlayTextInputToastView(toastID: id, userName: $userName)
+                }
             }
             .padding()
             .frame(maxWidth: .infinity)

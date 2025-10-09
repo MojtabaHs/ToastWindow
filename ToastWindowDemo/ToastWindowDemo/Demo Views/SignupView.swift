@@ -74,8 +74,8 @@ struct SignupView: View {
         isSubmitting = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             isSubmitting = false
-            toastManager.showToast(content: SuccessToast(),
-                                   duration: 3.0)
+            toastManager.showToast(duration: 3.0,
+                                   content: { SuccessToast() })
         }
     }
 }

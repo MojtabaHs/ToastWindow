@@ -109,7 +109,8 @@ struct CheckoutView: View {
                 Button("❌ No, buy as-is") {
 //                    showAppleOffer = false
                     let dragToast = DraggableToastView(message: "No Apples For You!")
-                    _ = toastManager.showToast(content: dragToast, duration: 2.0)
+                    toastManager.showToast(duration: 2.0,
+                                           content: { dragToast })
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -132,7 +133,8 @@ struct CheckoutView: View {
             
             let message = purchaseSuccess ? "✅ Order placed successfully!" : "❌ Payment failed. Please try again."
             let toastView = MyToastView(message: message, bgColor: Color.gray.opacity(0.8), position: .bottom)
-            toastManager.showToast(content: toastView, duration: 2.6)
+            toastManager.showToast(duration: 2.6,
+                                   content: { toastView })
             
             purchaseSuccess.toggle()
         }

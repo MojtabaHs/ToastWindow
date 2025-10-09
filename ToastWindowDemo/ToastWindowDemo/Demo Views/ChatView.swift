@@ -83,8 +83,9 @@ struct ChatView: View {
         messages.append(Message(text: newMessage, isSender: true))
         // Wait 1.5 seconds, then add a response from the other person
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            toastManager.showToast(content: newMessageNotification,
-                                   duration: 2.6)
+            toastManager.showToast(duration: 2.6, content: {
+                newMessageNotification
+            })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 messages.append(Message(text: "Sounds delicious!", isSender: false))
             }

@@ -14,8 +14,10 @@ struct DragView: View {
     @Environment(\.dismissAllToasts) var dismissAllToasts
     
     var body: some View {
-        Button("Open Draggable Toast") {
-            toastManager.showToast(content: DraggableToastView(message: "Drag this toast! 🍞🍴🧈", duration: 4.0, animationDuration: 0.5, bgColor: .blue))
+        Button("Open Draggable Toast") {            
+            toastManager.showToast(content: {
+                DraggableToastView(message: "Drag this toast! 🍞🍴🧈", duration: 4.0, animationDuration: 0.5, bgColor: .blue)
+            })
         }
         .buttonStyle(.bordered)
     }
@@ -29,7 +31,7 @@ struct DraggableToastView: View {
     
     @State private var isVisible = false
     @State private var dragOffset: CGSize = .zero
-
+    
     init(message: String,
          duration: TimeInterval = 2.6,
          animationDuration: TimeInterval = 0.3,

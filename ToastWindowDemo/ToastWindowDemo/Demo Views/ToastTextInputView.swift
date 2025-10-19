@@ -35,9 +35,7 @@ struct ToastTextInputView: View {
             }
             
             Button("Update Name") {
-                let id = ToastID()
-
-                toastManager.showToast(id: id) {
+                let id = toastManager.showToast() {
                     OverlayTextInputToastView(toastID: id, userName: $userName)
                 }
             }

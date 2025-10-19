@@ -39,12 +39,13 @@ public final class ToastManager: Sendable {
                                               id: ToastID = ToastID(),
                                               isUserInteractionEnabled: Bool = true,
                                               onDismiss: @escaping (() -> Void) = { }) -> UUID {
-        
-        WindowManager.createToastWindow(content: content,
-                                        duration: duration,
-                                        id: id,
-                                        isUserInteractionEnabled: isUserInteractionEnabled,
-                                        onDismiss: onDismiss)
+        defer {
+            WindowManager.createToastWindow(content: content,
+                                            duration: duration,
+                                            id: id,
+                                            isUserInteractionEnabled: isUserInteractionEnabled,
+                                            onDismiss: onDismiss)
+        }
         return id
     }
 
@@ -67,11 +68,13 @@ public final class ToastManager: Sendable {
                                               @ViewBuilder content: () -> V,
                                               onDismiss: @escaping (() -> Void) = { }) -> UUID {
 
-        WindowManager.createToastWindow(content: content(),
-                                        duration: duration,
-                                        id: id,
-                                        isUserInteractionEnabled: isUserInteractionEnabled,
-                                        onDismiss: onDismiss)
+        defer {
+            WindowManager.createToastWindow(content: content(),
+                                            duration: duration,
+                                            id: id,
+                                            isUserInteractionEnabled: isUserInteractionEnabled,
+                                            onDismiss: onDismiss)
+        }
         return id
     }
 
